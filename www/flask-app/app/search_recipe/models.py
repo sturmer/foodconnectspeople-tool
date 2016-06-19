@@ -1,8 +1,10 @@
 from app import db
+#from app.search_recipe import constants
 
 class Recipe(db.Model):
+    __tablename__ = 'recipe'
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    thumbnail = db.Column(db._Binary)
+    thumbnail = db.Column(db.Binary)
     name = db.Column(db.String(1024), index=True, nullable=False)
     preparation_time_minutes = db.Column(db.SmallInteger)
     difficulty = db.Column(db.SmallInteger)

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-    {% from "_formhelpers.html" import render_field %}
-    <form action='/search' id='search' method='post'>
-    <!--{ { form.hidden_tag() }} This needs be included for CSRF -->
+    {% from "search_recipe/_formhelpers.html" import render_field %}
+    <form action='' id='search' method='post'>
+    {{ form.hidden_tag() }}
         <fieldset>
             <legend>
                 Find a Recipe
