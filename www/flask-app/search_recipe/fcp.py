@@ -31,6 +31,7 @@ def search_results(form):
             'vegan' : vegan,
             'vegetarian' : vegetarian
             }
+
     return render_template('search_results.html', data=data)
 
 if __name__ == '__main__':
