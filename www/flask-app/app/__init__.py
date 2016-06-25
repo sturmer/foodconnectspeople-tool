@@ -34,5 +34,9 @@ if not app.config['DEBUG']:
 def not_found(error):
     return render_template('404.html'), 404
 
-from app.search_recipe.views import mod as searchRecipe
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+from app.recipes.views import mod as searchRecipe
 app.register_blueprint(searchRecipe)

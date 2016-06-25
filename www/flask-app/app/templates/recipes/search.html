@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    {% from "recipes/_formhelpers.html" import render_field %}
+    <form action='' id='search' method='post'>
+    {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>
+                Find a Recipe
+            </legend>
+            <dl>
+                {{ render_field(form.keywords) }}
+                {{ render_field(form.gluten_free) }}
+                {{ render_field(form.lactose_free) }}
+                {{ render_field(form.vegetarian) }}
+                {{ render_field(form.vegan) }}
+            </dl>
+            <input name='Search' type='submit' value='Search'>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    {% from "recipes/_formhelpers.html" import render_field %}
+    <form action='' id='insert' method='post'>
+    {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>
+                Insert new Recipe
+            </legend>
+            <dl>
+                {{ render_field(form.name) }}
+                {{ render_field(form.thumbnail) }}
+                {{ render_field(form.preparation_time_minutes) }}
+                {{ render_field(form.difficulty) }}
+                {{ render_field(form.place_of_origin) }}
+                {{ render_field(form.category) }}
+                {{ render_field(form.cooking_technique) }}
+                {{ render_field(form.is_vegetarian) }}
+                {{ render_field(form.is_vegan) }}
+                {{ render_field(form.is_gluten_free) }}
+                {{ render_field(form.is_lactose_free) }}
+            </dl>
+            <input name='Insert' type='submit' value='Create'>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

@@ -14,3 +14,14 @@ python shell.py
 3. Run:
 
 `python run.py`
+
+
+# Recipes
+
+## Query DB from cli
+
+```
+python shell.py
+>>> from app.recipes.models import Recipe
+>>> Recipe.query.all()
+```

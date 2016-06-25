@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Search hits</h1>
+
+
+{% if recipes %}
+<ul>
+{% for recipe in recipes %}
+<li>{{ recipe.name }}</li>
+{% endfor %}
+<ul>
+{% endif %}
+
+
+{% endblock %}
