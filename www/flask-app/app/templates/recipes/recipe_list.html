@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Search hits</h1>
+<h1>Recipes found</h1>
 
 
 {% if recipes %}
 <ul>
 {% for recipe in recipes %}
-<li>{{ recipe.name }}</li>
+<li><a href="{{ url_for('.show_recipe', recipe_id=recipe.id) }}">{{ recipe.name }}</a></li>
 {% endfor %}
 <ul>
 {% endif %}

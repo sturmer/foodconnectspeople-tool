@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request
 from forms import SearchForm
 
 from app import db
+#from app.recipes import constants as RECIPE
 from app.recipes.forms import SearchForm, CreationForm
 from app.recipes.models import Recipe
 
@@ -33,18 +34,18 @@ def search():
         #        'vegetarian' : vegetarian
         #        }
 
-        return render_template('recipes/search_results.html', recipes=None)
+        return render_template('recipes/recipe_list.html', recipes=None)
 
     return render_template('recipes/search.html', form=form)
 
-@mod.route('/search_results/')
-def search_results(recipes):
-    return render_template('recipes/search_results.html', recipes=recipes)
+@mod.route('/recipe_list/')
+def recipe_list(recipes):
+    return render_template('recipes/recipe_list.html', recipes=recipes)
 
 @mod.route('/list/')
 def list():
     recipes = Recipe.query.all()
-    return render_template('recipes/search_results.html', recipes=recipes)
+    return render_template('recipes/recipe_list.html', recipes=recipes)
 
 @mod.route('/insert/', methods=['GET', 'POST'])
 def insert():
@@ -56,9 +57,24 @@ def insert():
 
     if request.method == 'POST':
         recipe = Recipe()
-        #recipe.id = ?
+
         recipe.name = request.form.get('name')
-        # TODO And the other fields
+        recipe.procedure = request.form.get('procedure')
+        recipe.preparation_time_minutes =  request.form.get('preparation_time_minutes', 60)
+        recipe.difficulty =  request.form.get('difficulty', 3)
+        recipe.place_of_origin =  request.form.get('place_of_origin', '')
+        recipe.category = request.form.get('category', 'Cooked')
+        recipe.cooking_technique = request.form.get('cooking_technique', '')
+
+        for intolerance in ['is_vegetarian', 'is_vegan', 'is_gluten_free', 'is_lactose_free']:
+            if request.form.get(intolerance) == 'y':
+                setattr(recipe, intolerance, True)
+            else:
+                setattr(recipe, intolerance, False)
+
+        #recipe.is_vegan = request.form.get('is_vegan', False)
+        #recipe.is_gluten_free = request.form.get('is_gluten_free', False)
+        #recipe.is_lactose_free = request.form.get('is_lactose_free', False)
 
         # Save to DB
         db.session.add(recipe)
@@ -70,5 +86,13 @@ def insert():
 
 @mod.route('/recipe/<recipe_id>')
 def show_recipe(recipe_id):
-    recipe = Recipe.query.filter_by(id=recipe_id)
-    return render_template('recipes/recipe.html', recipe=recipe)
+    result_set = Recipe.query.filter_by(id=recipe_id)
+    hits = result_set.count()
+    if hits == 1:
+        recipe = result_set.one()
+        return render_template('recipes/recipe.html', recipe=recipe)
+    elif hits == 0:
+        return render_template('recipes/recipe_list.html', recipe=Recipe.query.all())
+    else:
+        # Error: more results with the same ID??
+        pass

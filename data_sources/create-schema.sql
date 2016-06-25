@@ -20,6 +20,7 @@ CREATE TABLE foodconnectspeople.Recipe (
   , name VARCHAR(1024) NOT NULL
   , preparation_time_minutes SMALLINT
   , difficulty SMALLINT
+  , procedure VARCHAR(10000) NOT NULL   -- 1000 words, 1 word = 5 chars, 5000 x2
 
   , place_of_origin VARCHAR(256)
   , is_from_latitude DECIMAL(9,6)

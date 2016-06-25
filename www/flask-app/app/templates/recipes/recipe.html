@@ -3,4 +3,16 @@
 
 <h1>{{ recipe.name }}</h1>
 
+<!-- TODO: Ingredients in bullet list -->
+{% if recipe_ingredients %}
+<ul>
+  {% for ingredient in recipe_ingredients %}
+  <li>{{ ingredient.quantity }} {{ ingredient.name }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<h2>Procedure</h2>
+<div>{{ recipe.procedure }}</div>
+
 {% endblock %}

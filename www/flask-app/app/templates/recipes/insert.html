@@ -10,8 +10,8 @@
                 Insert new Recipe
             </legend>
             <dl>
-                {{ render_field(form.name) }}
-                {{ render_field(form.thumbnail) }}
+                {{ render_field(form.name, size="50") }}
+                {{ render_field(form.procedure, rows="20", cols="50") }}
                 {{ render_field(form.preparation_time_minutes) }}
                 {{ render_field(form.difficulty) }}
                 {{ render_field(form.place_of_origin) }}
@@ -22,6 +22,9 @@
                 {{ render_field(form.is_gluten_free) }}
                 {{ render_field(form.is_lactose_free) }}
             </dl>
+            <!--
+              TODO Have button +Add ingredient, that displays a new subform with quantity/name/... of the ingredient
+            -->
             <input name='Insert' type='submit' value='Create'>
         </fieldset>
     </form>

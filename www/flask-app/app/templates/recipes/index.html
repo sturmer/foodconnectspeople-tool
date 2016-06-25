@@ -2,8 +2,11 @@
 {% block content %}
 <div>
     <h1>Welcome to the Search application for Food Connects People!</h1>
-    <a href="{{ url_for('.search') }}">Search a recipe</a>
-    <a href="{{ url_for('.list') }}">List all recipes</a>
-    <a href="{{ url_for('.insert') }}">New recipe (Requires Authentication)</a>
+    <p>From here, you can:</p>
+    <ul>
+      <li><a href="{{ url_for('.search') }}">Search a recipe</a></li>
+      <li><a href="{{ url_for('.list') }}">List all recipes</a></li>
+      <li><a href="{{ url_for('.insert') }}">New recipe (Requires Authentication)</a></li>
+    </ul>
 </div>
 {% endblock %}
