@@ -19,14 +19,16 @@ CREATE TABLE foodconnectspeople.Recipe (
   id SERIAL PRIMARY KEY
   , name VARCHAR(1024) NOT NULL
   , preparation_time_minutes SMALLINT
+  , persons SMALLINT
   , difficulty SMALLINT
-  , procedure VARCHAR(10000) NOT NULL   -- 1000 words, 1 word = 5 chars, 5000 x2
+  #, procedure VARCHAR(10000) NOT NULL   -- 1000 words, 1 word = 5 chars, 5000 x2
 
   , place_of_origin VARCHAR(256)
-  , is_from_latitude DECIMAL(9,6)
-  , is_from_longitude DECIMAL(9,6)
+  #, is_from_latitude DECIMAL(9,6)
+  #, is_from_longitude DECIMAL(9,6)
 
   , category VARCHAR(1024)
+  , main_ingredient VARCHAR(1024)
   , cooking_technique VARCHAR(1024)
   , is_vegetarian BOOLEAN
   , is_vegan BOOLEAN
@@ -79,10 +81,11 @@ CREATE TABLE foodconnectspeople.IngredientsProperties (
 CREATE TABLE foodconnectspeople.RecipeIngredients (
   recipe_id SERIAL
   , ingredient_id SERIAL
-  , is_main BOOLEAN
+  #, is_main BOOLEAN
   , quantity SMALLINT
   , unit_of_measure VARCHAR(128)
   , preparation_technique VARCHAR(1024)
+  , alternative_ingredient VARCHAR(1024)
   , PRIMARY KEY (recipe_id, ingredient_id)
   , FOREIGN KEY (recipe_id) REFERENCES foodconnectspeople.Recipe(id)
 );

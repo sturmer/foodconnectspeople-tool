@@ -5,6 +5,9 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 db = SQLAlchemy(app)
+db.init_app(app)
+db.create_all()  # FIXME why doesn't this create the recipe_ingredients table?
+# NOTE Last 2 lines added as per http://damyanon.net/flask-series-model/
 
 # secret key generation
 def install_secret_key(app, filename='secret_key'):
